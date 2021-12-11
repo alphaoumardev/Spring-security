@@ -15,8 +15,12 @@ import java.util.List;
 public interface UserService
 {
     Users saveUser(Users user);
+
     Role saveRole(Role role);
-    void addRoleToUser(String username, String roleName);//to add the username
+
     Users getUser(String username);
+
     List<Users> getUsers();
+
+    void addRoleToUser(String username, String roleName);//to add the username
 }

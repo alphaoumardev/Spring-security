@@ -120,7 +120,6 @@ public class UserController
                 response.setHeader("Hoop ERROR",ex.getMessage());
 //                    response.sendError(FORBIDDEN.value());
                 response.setStatus(FORBIDDEN.value());
-
             }
         }
         else

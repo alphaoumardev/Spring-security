@@ -36,7 +36,6 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @Slf4j
 public class Authorization extends OncePerRequestFilter
 {
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
     {
@@ -60,10 +59,8 @@ public class Authorization extends OncePerRequestFilter
                     String[] roles=decode.getClaim("roles").asArray(String.class);
                     Collection<SimpleGrantedAuthority>authorities=new ArrayList<>();
                     stream(roles).forEach(role ->
-                    {
-                        authorities.add(new SimpleGrantedAuthority(role));
-                    });
-    UsernamePasswordAuthenticationToken authenticationToken =new UsernamePasswordAuthenticationToken(username,null,authorities);
+                            authorities.add(new SimpleGrantedAuthority(role)));
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null,authorities);
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                     filterChain.doFilter(request,response);
                 }
@@ -85,7 +82,5 @@ public class Authorization extends OncePerRequestFilter
                 filterChain.doFilter(request,response);
             }
         }
-
-
     }
 }
